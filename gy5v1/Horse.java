@@ -2,7 +2,7 @@ package gy5v1;
 
 import java.time.LocalDate;
 
-public class Horse implements Animal, MeansOfTransport{
+public class Horse implements Animal, MeansOfTransport, Comparable<Horse>{
     private double speedInMeterPerSec, weight, carryingCapacityInKg;
     private final String sound = "Nyihaha";
     private final int numberOfLegs = 4;
@@ -70,5 +70,22 @@ public class Horse implements Animal, MeansOfTransport{
         sb.append(", weightInKg=").append(getWeightInKg());
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Horse o) {
+        //Lovak osszehasonlitasa forditott szinek, tomeguk novekvo, nevuk forditott
+        int v = -1 * this.getColor().compareTo(o.getColor());
+
+        if (v != 0) return v;
+
+        v = (int)(this.getWeightInKg() - o.getWeightInKg());
+
+        if (v != 0) return v;
+
+        return -1 * this.getName().compareTo(o.getName());
+
+
+
     }
 }
